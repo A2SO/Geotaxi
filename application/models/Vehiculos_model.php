@@ -89,7 +89,7 @@ htmlspecialchars($row->nombre_conductor, ENT_QUOTES);
     function get_all_validado()
     {
         $this->db->order_by($this->id, $this->order);
-        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.clave,estatus.descripcion FROM vehiculos,estatus WHERE estatus.clave=vehiculos.clave and vehiculos.clave='VA'")->result();
+        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.clave,estatus.descripcion  FROM vehiculos,estatus WHERE estatus.clave=vehiculos.clave and vehiculos.clave='VA'")->result();
     }
     function get_all_asignado()
     {
@@ -110,7 +110,7 @@ htmlspecialchars($row->nombre_conductor, ENT_QUOTES);
     }
     function get_by_id_validado($id)
     {
-        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.clave,estatus.descripcion FROM vehiculos,estatus WHERE estatus.clave=vehiculos.clave and vehiculos.idvehiculo=". $id)->row();
+        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.clave,estatus.descripcion ,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat FROM vehiculos,estatus,concesionario WHERE estatus.clave=vehiculos.clave and vehiculos.idvehiculo=". $id)->row();
     }
     
     // get total rows

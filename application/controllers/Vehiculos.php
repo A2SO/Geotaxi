@@ -207,7 +207,7 @@ class Vehiculos extends CI_Controller
 		'placa' => set_value('placa', $row->placa),
 		'niv' => set_value('niv', $row->niv),
 		'numeroeconomico' => set_value('numeroeconomico', $row->numeroeconomico),
-		'marca' => set_value('marca', $row->marca),
+       	'marca' => set_value('marca', $row->marca),
 		'modelo' => set_value('modelo', $row->modelo),
 		'tarjetacirculacion' => set_value('tarjetacirculacion', $row->tarjetacirculacion),
         'clave' => set_value('clave', $row->clave),
@@ -233,7 +233,11 @@ class Vehiculos extends CI_Controller
         'placa' => set_value('placa', $row->placa),
         'niv' => set_value('niv', $row->niv),
         'numeroeconomico' => set_value('numeroeconomico', $row->numeroeconomico),
+        'arrConcesioario' => $this->Vehiculos_model->get_concesionario(),
         'idconcesinario' => set_value('idconcesinario', $row->idconcesinario),
+        'nombre' => set_value('nombre', $row->nombre),
+        'ape_pat' => set_value('ape_pat', $row->ape_pat),
+        'ape_mat' => set_value('ape_mat', $row->ape_mat),
         'marca' => set_value('marca', $row->marca),
         'modelo' => set_value('modelo', $row->modelo),
         'tarjetacirculacion' => set_value('tarjetacirculacion', $row->tarjetacirculacion),
@@ -259,6 +263,7 @@ class Vehiculos extends CI_Controller
 		'placa' => $this->input->post('placa',TRUE),
 		'niv' => $this->input->post('niv',TRUE),
 		'numeroeconomico' => $this->input->post('numeroeconomico',TRUE),
+
 		'marca' => $this->input->post('marca',TRUE),
 		'modelo' => $this->input->post('modelo',TRUE),
 		'tarjetacirculacion' => $this->input->post('tarjetacirculacion',TRUE),
@@ -272,7 +277,7 @@ class Vehiculos extends CI_Controller
     }
     public function update_action_validado() 
     {
-        $this->_rules();
+        $this->_rules_validado();
 
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('idvehiculo', TRUE));
@@ -319,6 +324,19 @@ class Vehiculos extends CI_Controller
 	$this->form_validation->set_rules('clave', 'clave', 'trim|required');
 	$this->form_validation->set_rules('idvehiculo', 'idvehiculo', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+    public function _rules_validado() 
+    {
+    $this->form_validation->set_rules('placa', 'placa', 'trim|required');
+    $this->form_validation->set_rules('niv', 'niv', 'trim|required');
+    $this->form_validation->set_rules('numeroeconomico', 'numeroeconomico', 'trim|required');
+    $this->form_validation->set_rules('idconcesinario', 'idconcesinario', 'trim|required');
+    $this->form_validation->set_rules('marca', 'marca', 'trim|required');
+    $this->form_validation->set_rules('modelo', 'modelo', 'trim|required');
+    $this->form_validation->set_rules('tarjetacirculacion', 'tarjetacirculacion', 'trim|required');
+    $this->form_validation->set_rules('idvehiculo', 'idvehiculo', 'trim');   
+    $this->form_validation->set_rules('clave', 'clave', 'trim|required');   
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()

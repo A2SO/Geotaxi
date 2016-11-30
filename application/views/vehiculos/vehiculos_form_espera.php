@@ -39,6 +39,7 @@
 	    <div class="form-group">        
                     <label for="varchar">Estatus <?php echo form_error('Estatus') ?></label>:
                      <select class="form-control" id="clave" name="clave">
+                     <option value="0"> Selecciona un estatus</option>
             <?php
                 foreach ($arrProfesiones as $i => $profesion){
                     echo "<option value='0'> </option>";
