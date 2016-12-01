@@ -18,11 +18,11 @@
         </div>
 	    <div class="form-group">
             <label for="varchar">Niv <?php echo form_error('niv') ?></label>
-            <input type="text" class="form-control" name="niv" id="niv" placeholder="Niv" value="<?php echo $niv; ?>" />
+            <input type="text" class="form-control" name="niv" id="niv" placeholder="Niv" value="<?php echo $niv; ?>" readonly="readonly" />
         </div>
 	    <div class="form-group">
             <label for="varchar">Numeroeconomico <?php echo form_error('numeroeconomico') ?></label>
-            <input type="text" class="form-control" name="numeroeconomico" id="numeroeconomico" placeholder="Numeroeconomico" value="<?php echo $numeroeconomico; ?>" />
+            <input type="text" class="form-control" name="numeroeconomico" id="numeroeconomico" placeholder="Numeroeconomico" value="<?php echo $numeroeconomico; ?>" readonly="readonly"/>
         </div>
         <div class="form-group">
         <label for="varchar">Concesionario <?php echo form_error('Concesionario') ?></label>:
@@ -32,27 +32,28 @@
                 foreach ($arrConcesioario as $i => $profesion){
                         echo "<option value=".$i ;
                         if($idconcesinario==$i) echo " selected='selected'";
-                        echo ">".$profesion." ". $ape_pat." ".$ape_mat."</option>";
+                        echo "> ".$profesion." ". $ape_pat." ".$ape_mat." ".$i."</option>";
                                                              }
             ?>
                 </select>
         </div>
 	    <div class="form-group">
             <label for="varchar">Marca <?php echo form_error('marca') ?></label>
-            <input type="text" class="form-control" name="marca" id="marca" placeholder="Marca" value="<?php echo $marca; ?>" />
+            <input type="text" class="form-control" name="marca" id="marca" placeholder="Marca" value="<?php echo $marca; ?>" readonly="readonly"/>
         </div>
 	    <div class="form-group">
             <label for="varchar">Modelo <?php echo form_error('modelo') ?></label>
-            <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo" value="<?php echo $modelo; ?>"    </div>
+            <input type="text" class="form-control" name="modelo" id="modelo" placeholder="Modelo" value="<?php echo $modelo;?> " readonly="readonly"/> 
+         </div>
 	    <div class="form-group">
             <label for="varchar">Tarjetacirculacion <?php echo form_error('tarjetacirculacion') ?></label>
-            <input type="text" class="form-control" name="tarjetacirculacion" id="tarjetacirculacion" placeholder="Tarjetacirculacion" value="<?php echo $tarjetacirculacion; ?>" />
+            <input type="text" class="form-control" name="tarjetacirculacion" id="tarjetacirculacion" placeholder="Tarjetacirculacion" value="<?php echo $tarjetacirculacion; ?>" readonly="readonly" />
         </div>
         <div class="form-group">
         
                     <label for="varchar">Estatus <?php echo form_error('Estatus') ?></label>:
                      <select class="form-control" id="clave" name="clave">
-                     <option value="0"> Selecciona un estatus</option>
+                     
 
             <?php
                 foreach ($arrProfesiones as $i => $profesion){

@@ -34,7 +34,7 @@
 						<li class="dropdown-header">Basic layouts</li>
 						<li><?php echo anchor(site_url('vehiculos/espera'), 'Espera');?></li>
 						<li><?php echo anchor(site_url('vehiculos/validado'), 'Validado');?></li>
-						<li><?php echo anchor(site_url('vehiculos/asignado'), 'Asignado');?></li>
+						<li><?php echo anchor(site_url('vehiculos/asignado_concesionario'), 'Concesionarios Asignados');?></li>
 						<li><?php echo anchor(site_url('vehiculos/inactivo'), 'Inactivo');?></li>
 					</ul>
 

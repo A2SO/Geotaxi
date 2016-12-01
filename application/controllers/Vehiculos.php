@@ -71,9 +71,9 @@ class Vehiculos extends CI_Controller
 
         
     }
-    public function asignado()
+    public function asignado_concesionario()
     {
-       $vehiculos = $this->Vehiculos_model->get_all_asignado();
+       $vehiculos = $this->Vehiculos_model->get_all_asignado_concesionario();
         $data = array(
             'vehiculos_data' => $vehiculos
         );
@@ -81,7 +81,7 @@ class Vehiculos extends CI_Controller
         $this->load->view('guest/head');
         $this->load->view('guest/nav');
         $this->load->view('guest/menuA');
-        $this->load->view('vehiculos/vehiculos_list', $data);
+        $this->load->view('vehiculos/vehiculos_list_asignado_concesionario', $data);
         $this->load->view('guest/footer');
 
         

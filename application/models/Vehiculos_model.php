@@ -91,10 +91,11 @@ htmlspecialchars($row->nombre_conductor, ENT_QUOTES);
         $this->db->order_by($this->id, $this->order);
         return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.clave,estatus.descripcion  FROM vehiculos,estatus WHERE estatus.clave=vehiculos.clave and vehiculos.clave='VA'")->result();
     }
-    function get_all_asignado()
+    function get_all_asignado_concesionario()
+
     {
         $this->db->order_by($this->id, $this->order);
-        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion, vehiculos.clave,estatus.descripcion,concesionario.idconcesinario,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat,conductor.idconductor,conductor.nombre_conductor,conductor.ap_conductor,conductor.am_conductor FROM `vehiculos`,concesionario,conductor,estatus WHERE estatus.clave=vehiculos.clave and concesionario.idconcesinario= vehiculos.idconcesinario and conductor.idconductor=vehiculos.idconductor and conductor.clave='AC'and vehiculos.clave='AS'")->result();
+        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.idconductor, vehiculos.clave,estatus.descripcion,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat  FROM vehiculos,estatus,concesionario WHERE estatus.clave=vehiculos.clave and vehiculos.clave='AS' AND vehiculos.idconcesinario=concesionario.idconcesinario ")->result();
     }
     function get_all_inactivo()
     {
