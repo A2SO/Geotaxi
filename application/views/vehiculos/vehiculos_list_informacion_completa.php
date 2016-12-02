@@ -53,13 +53,13 @@
 		    <td><?php echo $vehiculos->numeroeconomico ?></td>
 		    <td><?php echo $vehiculos->tarjetacirculacion ?></td>
              <td><?php echo $vehiculos->idconcesinario ." ".$vehiculos->nombre." ".$vehiculos->ape_pat." ".$vehiculos->ape_mat ?></td>
-            <td><?php echo $vehiculos->idconductor ?></td>
+            <td><?php echo $vehiculos->idconductor." ".$vehiculos->nombre_conductor." ".$vehiculos->ap_conductor." ".$vehiculos->am_conductor ?></td>
 		    <td><?php echo $vehiculos->descripcion ?></td>
 		    <td style="text-align:center" width="200px">
 			<?php 
-			echo anchor(site_url('vehiculos/read_asignado_concesionario/'.$vehiculos->idvehiculo ),'Detalles'); 
+			echo anchor(site_url('vehiculos/read_informacion_completa/'.$vehiculos->idvehiculo ),'Detalles'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/update_asignado_concesionario/'.$vehiculos->idvehiculo),'Asignar Conductor'); 
+			echo anchor(site_url('vehiculos/update_informacion_total/'.$vehiculos->idvehiculo),'Modificar'); 
 			echo ' | '; 
 			echo anchor(site_url('vehiculos/delete/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
 ¿Está seguro?\')"'); 

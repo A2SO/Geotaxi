@@ -86,6 +86,21 @@ class Vehiculos extends CI_Controller
 
         
     }
+    public function informacion_completa()
+    {
+       $vehiculos = $this->Vehiculos_model->get_all_informacion_completa();
+        $data = array(
+            'vehiculos_data' => $vehiculos
+        );
+        
+        $this->load->view('guest/head');
+        $this->load->view('guest/nav');
+        $this->load->view('guest/menuA');
+        $this->load->view('vehiculos/vehiculos_list_informacion_completa', $data);
+        $this->load->view('guest/footer');
+
+        
+    }
     public function inactivo()
     {
        $vehiculos = $this->Vehiculos_model->get_all_inactivo();
@@ -145,6 +160,60 @@ class Vehiculos extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Registro no encontrado');
             redirect(site_url('vehiculos'));
+        }
+    }
+    public function read_asignado_concesionario($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id_asignado_concesionario($id);
+        if ($row) {
+            $data = array(
+        'idvehiculo' => $row->idvehiculo,
+        'placa' => $row->placa,
+        'niv' => $row->niv,
+        'numeroeconomico' => $row->numeroeconomico,
+        'idconcesinario' => $row->idconcesinario,
+        'nombre' => $row->nombre,
+        'ape_mat' => $row->ape_mat,
+        'ape_pat' => $row->ape_pat,
+        'marca' => $row->marca,
+        'modelo' => $row->modelo,
+        'tarjetacirculacion' => $row->tarjetacirculacion,
+        'clave' => $row->clave,
+        'descripcion' => $row->descripcion,
+        );
+            $this->load->view('vehiculos/vehiculos_read_asignado_concesionario', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos'));
+        }
+    }
+    public function read_informacion_completa($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id_informacion_completa($id);
+        if ($row) {
+            $data = array(
+        'idvehiculo' => $row->idvehiculo,
+        'placa' => $row->placa,
+        'niv' => $row->niv,
+        'numeroeconomico' => $row->numeroeconomico,
+        'idconcesinario' => $row->idconcesinario,
+        'nombre' => $row->nombre,
+        'ape_mat' => $row->ape_mat,
+        'ape_pat' => $row->ape_pat,
+        'idconductor' => $row->idconcesinario,
+        'nombre_conductor' => $row->nombre_conductor,
+        'ap_conductor' => $row->ap_conductor,
+        'am_conductor' => $row->am_conductor,
+        'marca' => $row->marca,
+        'modelo' => $row->modelo,
+        'tarjetacirculacion' => $row->tarjetacirculacion,
+        'clave' => $row->clave,
+        'descripcion' => $row->descripcion,
+        );
+            $this->load->view('vehiculos/vehiculos_read_informacion_completa', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/informacion_completa'));
         }
     }
 
@@ -251,6 +320,72 @@ class Vehiculos extends CI_Controller
             redirect(site_url('vehiculos/validado'));
         }
     }
+    public function update_asignado_concesionario($id) 
+    {   
+        
+        $row = $this->Vehiculos_model->get_by_id_asignado_concesionario($id);            
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('vehiculos/update_action_asignado_concesionario'),
+        'idvehiculo' => set_value('idvehiculo', $row->idvehiculo),
+        'placa' => set_value('placa', $row->placa),
+        'niv' => set_value('niv', $row->niv),
+        'numeroeconomico' => set_value('numeroeconomico', $row->numeroeconomico),
+        'arrConcesioario' => $this->Vehiculos_model->get_concesionario(),
+        'idconcesinario' => set_value('idconcesinario', $row->idconcesinario),
+        'nombre' => set_value('nombre', $row->nombre),
+        'ape_pat' => set_value('ape_pat', $row->ape_pat),
+        'ape_mat' => set_value('ape_mat', $row->ape_mat),
+        'arrConductor' => $this->Vehiculos_model->get_conductor(),
+        'idconductor' => set_value('idconductor', $row->idconductor),
+        'marca' => set_value('marca', $row->marca),
+        'modelo' => set_value('modelo', $row->modelo),
+        'tarjetacirculacion' => set_value('tarjetacirculacion', $row->tarjetacirculacion),
+        'clave' => set_value('clave', $row->clave),
+        'arrProfesiones' => $this->Vehiculos_model->get_clave(),
+        'descripcion' => set_value('descripcion', $row->descripcion),
+        );
+            $this->load->view('vehiculos/vehiculos_form_asignado_concesionario', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/asignado_concesionario'));
+        }
+    }
+    public function update_informacion_total($id) 
+    {   
+        
+        $row = $this->Vehiculos_model->get_by_id_informacion_completa($id);            
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('vehiculos/update_action_informacion_completa'),
+        'idvehiculo' => set_value('idvehiculo', $row->idvehiculo),
+        'placa' => set_value('placa', $row->placa),
+        'niv' => set_value('niv', $row->niv),
+        'numeroeconomico' => set_value('numeroeconomico', $row->numeroeconomico),
+        'arrConcesioario' => $this->Vehiculos_model->get_concesionario(),
+        'idconcesinario' => set_value('idconcesinario', $row->idconcesinario),
+        'nombre' => set_value('nombre', $row->nombre),
+        'ape_pat' => set_value('ape_pat', $row->ape_pat),
+        'ape_mat' => set_value('ape_mat', $row->ape_mat),
+        'arrConductor' => $this->Vehiculos_model->get_conductor(),
+        'idconductor' => set_value('idconductor', $row->idconductor),
+        'marca' => set_value('marca', $row->marca),
+        'modelo' => set_value('modelo', $row->modelo),
+        'tarjetacirculacion' => set_value('tarjetacirculacion', $row->tarjetacirculacion),
+        'clave' => set_value('clave', $row->clave),
+        'arrProfesiones' => $this->Vehiculos_model->get_clave(),
+        'descripcion' => set_value('descripcion', $row->descripcion),
+        );
+            $this->load->view('vehiculos/vehiculos_form_asignado_concesionario', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/informacion_completa'));
+        }
+    }
     
     public function update_action() 
     {
@@ -298,7 +433,54 @@ class Vehiculos extends CI_Controller
             redirect(site_url('vehiculos/validado'));
         }
     }
-    
+    public function update_action_asignado_concesionario() 
+    {
+        $this->_rules_asignado_concesionario();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idvehiculo', TRUE));
+        } else {
+            $data = array(
+        'placa' => $this->input->post('placa',TRUE),
+        'niv' => $this->input->post('niv',TRUE),
+        'numeroeconomico' => $this->input->post('numeroeconomico',TRUE),
+        'idconcesinario' => $this->input->post('idconcesinario',TRUE),
+        'idconductor' => $this->input->post('idconductor',TRUE),
+        'marca' => $this->input->post('marca',TRUE),
+        'modelo' => $this->input->post('modelo',TRUE),
+        'tarjetacirculacion' => $this->input->post('tarjetacirculacion',TRUE),
+        'clave' => $this->input->post('clave',TRUE),
+        );
+
+            $this->Vehiculos_model->update($this->input->post('idvehiculo', TRUE), $data);
+            $this->session->set_flashdata('message', 'Registro actualizado con Éxito');
+            redirect(site_url('vehiculos/asignado_concesionario'));
+        }
+    }
+    public function update_action_informacion_completa() 
+    {
+        $this->_rules_asignado_concesionario();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idvehiculo', TRUE));
+        } else {
+            $data = array(
+        'placa' => $this->input->post('placa',TRUE),
+        'niv' => $this->input->post('niv',TRUE),
+        'numeroeconomico' => $this->input->post('numeroeconomico',TRUE),
+        'idconcesinario' => $this->input->post('idconcesinario',TRUE),
+        'idconductor' => $this->input->post('idconductor',TRUE),
+        'marca' => $this->input->post('marca',TRUE),
+        'modelo' => $this->input->post('modelo',TRUE),
+        'tarjetacirculacion' => $this->input->post('tarjetacirculacion',TRUE),
+        'clave' => $this->input->post('clave',TRUE),
+        );
+
+            $this->Vehiculos_model->update($this->input->post('idvehiculo', TRUE), $data);
+            $this->session->set_flashdata('message', 'Registro actualizado con Éxito');
+            redirect(site_url('vehiculos/informacion_completa'));
+        }
+    }
     public function delete($id) 
     {
         $row = $this->Vehiculos_model->get_by_id($id);
@@ -331,6 +513,20 @@ class Vehiculos extends CI_Controller
     $this->form_validation->set_rules('niv', 'niv', 'trim|required');
     $this->form_validation->set_rules('numeroeconomico', 'numeroeconomico', 'trim|required');
     $this->form_validation->set_rules('idconcesinario', 'idconcesinario', 'trim|required');
+    $this->form_validation->set_rules('marca', 'marca', 'trim|required');
+    $this->form_validation->set_rules('modelo', 'modelo', 'trim|required');
+    $this->form_validation->set_rules('tarjetacirculacion', 'tarjetacirculacion', 'trim|required');
+    $this->form_validation->set_rules('idvehiculo', 'idvehiculo', 'trim');   
+    $this->form_validation->set_rules('clave', 'clave', 'trim|required');   
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+     public function _rules_asignado_concesionario() 
+    {
+    $this->form_validation->set_rules('placa', 'placa', 'trim|required');
+    $this->form_validation->set_rules('niv', 'niv', 'trim|required');
+    $this->form_validation->set_rules('numeroeconomico', 'numeroeconomico', 'trim|required');
+    $this->form_validation->set_rules('idconcesinario', 'idconcesinario', 'trim|required');
+    $this->form_validation->set_rules('idconductor', 'idconductor', 'trim|required');
     $this->form_validation->set_rules('marca', 'marca', 'trim|required');
     $this->form_validation->set_rules('modelo', 'modelo', 'trim|required');
     $this->form_validation->set_rules('tarjetacirculacion', 'tarjetacirculacion', 'trim|required');

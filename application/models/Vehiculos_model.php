@@ -63,7 +63,13 @@ htmlspecialchars($row->nombre, ENT_QUOTES);
         // almacenamos en una matriz bidimensional
         foreach($query->result() as $row)
            $arrDatos[htmlspecialchars($row->idconductor, ENT_QUOTES)] = 
-htmlspecialchars($row->nombre_conductor, ENT_QUOTES);
+            htmlspecialchars($row->nombre_conductor, ENT_QUOTES).
+            htmlspecialchars(" ", ENT_QUOTES).
+            htmlspecialchars($row->ap_conductor, ENT_QUOTES).
+            htmlspecialchars(" ", ENT_QUOTES).
+            htmlspecialchars($row->am_conductor, ENT_QUOTES).
+            htmlspecialchars(" ", ENT_QUOTES).
+            htmlspecialchars($row->idconductor, ENT_QUOTES);
 
         $query->free_result();
         return $arrDatos;
@@ -97,6 +103,12 @@ htmlspecialchars($row->nombre_conductor, ENT_QUOTES);
         $this->db->order_by($this->id, $this->order);
         return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.idconductor, vehiculos.clave,estatus.descripcion,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat  FROM vehiculos,estatus,concesionario WHERE estatus.clave=vehiculos.clave and vehiculos.clave='AS' AND vehiculos.idconcesinario=concesionario.idconcesinario ")->result();
     }
+    function get_all_informacion_completa()
+
+    {
+        $this->db->order_by($this->id, $this->order);
+        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.idconductor,conductor.nombre_conductor,conductor.ap_conductor,conductor.am_conductor, vehiculos.clave,estatus.descripcion,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat  FROM vehiculos,estatus,concesionario,conductor WHERE estatus.clave=vehiculos.clave and vehiculos.clave='IC' AND vehiculos.idconcesinario=concesionario.idconcesinario and vehiculos.idconductor=conductor.idconductor ")->result();
+    }
     function get_all_inactivo()
     {
         $this->db->order_by($this->id, $this->order);
@@ -112,6 +124,14 @@ htmlspecialchars($row->nombre_conductor, ENT_QUOTES);
     function get_by_id_validado($id)
     {
         return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.clave,estatus.descripcion ,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat FROM vehiculos,estatus,concesionario WHERE estatus.clave=vehiculos.clave and vehiculos.idvehiculo=". $id)->row();
+    }
+    function get_by_id_asignado_concesionario($id)
+    {
+        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario,vehiculos.idconductor, vehiculos.clave,estatus.descripcion ,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat FROM vehiculos,estatus,concesionario WHERE estatus.clave=vehiculos.clave and vehiculos.idconcesinario=concesionario.idconcesinario  and vehiculos.clave='AS' AND vehiculos.idvehiculo=". $id)->row();
+    }
+     function get_by_id_informacion_completa($id)
+    {
+        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion,vehiculos.idconcesinario, vehiculos.idconductor,conductor.nombre_conductor,conductor.ap_conductor,conductor.am_conductor, vehiculos.clave,estatus.descripcion,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat  FROM vehiculos,estatus,concesionario,conductor WHERE estatus.clave=vehiculos.clave and vehiculos.clave='IC' AND vehiculos.idconcesinario=concesionario.idconcesinario and vehiculos.idconductor=conductor.idconductor and vehiculos.idvehiculo=". $id)->row();
     }
     
     // get total rows
