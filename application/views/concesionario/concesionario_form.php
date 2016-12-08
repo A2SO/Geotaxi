@@ -38,7 +38,7 @@
         </div>
 	    <div class="form-group">
             <label for="varchar">Contrase&ntilde;a <?php echo form_error('contrasena') ?></label>
-            <input type="text" class="form-control" name="contrasena" id="contrasena" placeholder="Contrasena" value="<?php echo $contrasena; ?>" />
+            <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="Contrasena" value="<?php echo $contrasena; ?>" />
         </div>
 	    <div class="form-group">
             <label for="direccion_doc">Direccion Doc <?php echo form_error('direccion_doc') ?></label>
