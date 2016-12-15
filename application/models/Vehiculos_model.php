@@ -112,7 +112,7 @@ htmlspecialchars($row->nombre, ENT_QUOTES);
     function get_all_inactivo()
     {
         $this->db->order_by($this->id, $this->order);
-        return  $this->db->query("SELECT vehiculos.idvehiculo,vehiculos.placa,vehiculos.niv,vehiculos.numeroeconomico,vehiculos.marca,vehiculos.modelo,vehiculos.tarjetacirculacion, vehiculos.clave,estatus.descripcion,concesionario.idconcesinario,concesionario.nombre,concesionario.ape_pat,concesionario.ape_mat,conductor.idconductor,conductor.nombre_conductor,conductor.ap_conductor,conductor.am_conductor FROM `vehiculos`,concesionario,conductor,estatus WHERE estatus.clave=vehiculos.clave and concesionario.idconcesinario= vehiculos.idconcesinario and conductor.idconductor=vehiculos.idconductor and conductor.clave='AC'and vehiculos.clave='IN'")->result();
+        return  $this->db->query("SELECT * FROM vehiculos,estatus WHERE estatus.clave=vehiculos.clave and vehiculos.clave='IN'")->result();
     }
 
 
@@ -169,8 +169,25 @@ htmlspecialchars($row->nombre, ENT_QUOTES);
     // delete data
     function delete($id)
     {
+        
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+
+    }
+    function desactivar($id)
+    {
+        
+        $this->db->query("UPDATE vehiculos SET clave='IN' WHERE idvehiculo=".$id);
+    }
+     function reactivar($id)
+    {
+        
+        $this->db->query("UPDATE vehiculos SET clave='ES' WHERE idvehiculo=".$id);
+    }
+    function validar_auto($id)
+    {
+        
+        $this->db->query("UPDATE vehiculos SET clave='VA' WHERE idvehiculo=".$id);
     }
 
     function status_conductor($id)

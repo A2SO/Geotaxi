@@ -36,21 +36,12 @@
             <label for="varchar">Tarjetacirculacion <?php echo form_error('tarjetacirculacion') ?></label>
             <input type="text" class="form-control" name="tarjetacirculacion" id="tarjetacirculacion" placeholder="Tarjetacirculacion" value="<?php echo $tarjetacirculacion; ?>" />
         </div>
-        <div class="form-group">
-        
-                    <label for="varchar">Estatus <?php echo form_error('Estatus') ?></label>:
-                     <select class="form-control" id="clave" name="clave">
-
-<option value="0"> Selecciona una clave</option>
-            <?php
-                foreach ($arrProfesiones as $i => $profesion){
-                        echo "<option value=".$i ;
-                        if($clave==$i) echo " selected='selected'";
-                        echo ">".$profesion."</option>";
-                                                             }
-            ?>
-                </select>
+       
+            <div class="form-group">
+            <label for="varchar">clave <?php echo form_error('clave') ?></label>
+            <input type="text" class="form-control" name="clave" id="clave" placeholder="Tarjetacirculacion" value="ES" readonly="readonly"/>
         </div>
+
 
 	    <input type="hidden" name="idvehiculo" value="<?php echo $idvehiculo; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

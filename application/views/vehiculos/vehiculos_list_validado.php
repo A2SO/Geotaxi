@@ -13,7 +13,7 @@
     <body>
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <h2 style="margin-top:0px">Vehiculos List</h2>
+                <h2 style="margin-top:0px">Lista de Vehiculos Validados</h2>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 4px"  id="message">
@@ -59,7 +59,7 @@
 			echo ' | '; 
 			echo anchor(site_url('vehiculos/update_validado/'.$vehiculos->idvehiculo),'Asignar Concesionario'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/delete/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
+			echo anchor(site_url('vehiculos/desactivar_validado/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
 ¿Está seguro?\')"'); 
 			?>
 		    </td>

@@ -111,7 +111,7 @@ class Vehiculos extends CI_Controller
         $this->load->view('guest/head');
         $this->load->view('guest/nav');
         $this->load->view('guest/menuA');
-        $this->load->view('vehiculos/vehiculos_list', $data);
+        $this->load->view('vehiculos/vehiculos_list_inactivos', $data);
         $this->load->view('guest/footer');
 
         
@@ -138,6 +138,27 @@ class Vehiculos extends CI_Controller
         } else {
             $this->session->set_flashdata('message', 'Registro no encontrado');
             redirect(site_url('vehiculos'));
+        }
+    }
+    public function read_inactivo($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+        if ($row) {
+         $data = array(
+        'idvehiculo' => $row->idvehiculo,
+        'placa' => $row->placa,
+        'niv' => $row->niv,
+        'numeroeconomico' => $row->numeroeconomico,
+        'marca' => $row->marca,
+        'modelo' => $row->modelo,
+        'tarjetacirculacion' => $row->tarjetacirculacion,
+        'clave' => $row->clave,
+        'descripcion' => $row->descripcion,
+        );
+            $this->load->view('vehiculos/vehiculos_read_inactivo', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/inactivo'));
         }
     }
      public function read_validado($id) 
@@ -229,11 +250,9 @@ class Vehiculos extends CI_Controller
 	    'numeroeconomico' => set_value('numeroeconomico'),
 	    'marca' => set_value('marca'),
 	    'modelo' => set_value('modelo'),
-	    'tarjetacirculacion' => set_value('tarjetacirculacion'),
-	    'idconcesinario' => set_value('idconcesinario'),
-	    'idconductor' => set_value('idconductor'),
-	    'clave' => set_value('clave'),
-        'arrProfesiones' => $this->Vehiculos_model->get_clave(),
+	    'tarjetacirculacion' => set_value('tarjetacirculacion'),	   
+        'clave' => set_value('clave'),
+
 	);
         $this->load->view('vehiculos/vehiculos_form', $data);
     }
@@ -252,14 +271,14 @@ class Vehiculos extends CI_Controller
 		'marca' => $this->input->post('marca',TRUE),
 		'modelo' => $this->input->post('modelo',TRUE),
 		'tarjetacirculacion' => $this->input->post('tarjetacirculacion',TRUE),
-		'idconcesinario' => $this->input->post('idconcesinario',TRUE),
-		'idconductor' => $this->input->post('idconductor',TRUE),
-		'clave' => $this->input->post('clave',TRUE),
+		'idconcesinario' => $this->input->post('idconcesinario',FALSE),
+		'idconductor' => $this->input->post('idconductor',FALSE),
+		'clave' => $this->input->post('clave',FALSE),
 	    );
 
             $this->Vehiculos_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('vehiculos'));
+            $this->session->set_flashdata('message', 'Registro creado Exitosamente');
+            redirect(site_url('vehiculos/espera'));
         }
     }
     
@@ -487,11 +506,89 @@ class Vehiculos extends CI_Controller
 
         if ($row) {
             $this->Vehiculos_model->delete($id);
-            $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('vehiculos'));
+            $this->session->set_flashdata('message', 'Registro Eliminado con Exito');
+            redirect(site_url('vehiculos/espera'));
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('vehiculos'));
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/espera'));
+        }
+    }
+    public function desactivar_espera($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+
+        if ($row) {
+            $this->Vehiculos_model->desactivar($id);
+            $this->session->set_flashdata('message', 'Registro Eliminado con Exito');
+            redirect(site_url('vehiculos/espera'));
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/espera'));
+        }
+    }
+    public function desactivar_validado($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+
+        if ($row) {
+            $this->Vehiculos_model->desactivar($id);
+            $this->session->set_flashdata('message', 'Registro Eliminado con Exito');
+            redirect(site_url('vehiculos/validado'));
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/validado'));
+        }
+    }
+    public function desactivar_concesionario_asignado($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+
+        if ($row) {
+            $this->Vehiculos_model->desactivar($id);
+            $this->session->set_flashdata('message', 'Registro Eliminado con Exito');
+            redirect(site_url('vehiculos/asignado_concesionario'));
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/asignado_concesionario'));
+        }
+    }
+    public function desactivar_informacion_completa($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+
+        if ($row) {
+            $this->Vehiculos_model->desactivar($id);
+            $this->session->set_flashdata('message', 'Registro Eliminado con Exito');
+            redirect(site_url('vehiculos/informacion_completa'));
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/informacion_completa'));
+        }
+    }
+    public function reactivar($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+
+        if ($row) {
+            $this->Vehiculos_model->reactivar($id);
+            $this->session->set_flashdata('message', 'Registro Reactivado Exitosamente');
+            redirect(site_url('vehiculos/espera'));
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/inactivo'));
+        }
+    }
+    public function validar_auto($id) 
+    {
+        $row = $this->Vehiculos_model->get_by_id($id);
+
+        if ($row) {
+            $this->Vehiculos_model->validar_auto($id);
+            $this->session->set_flashdata('message', 'Vehiculo validado correctamente Exitosamente');
+            redirect(site_url('vehiculos/espera'));
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/espera'));
         }
     }
 
@@ -503,7 +600,7 @@ class Vehiculos extends CI_Controller
 	$this->form_validation->set_rules('marca', 'marca', 'trim|required');
 	$this->form_validation->set_rules('modelo', 'modelo', 'trim|required');
 	$this->form_validation->set_rules('tarjetacirculacion', 'tarjetacirculacion', 'trim|required');
-	$this->form_validation->set_rules('clave', 'clave', 'trim|required');
+	
 	$this->form_validation->set_rules('idvehiculo', 'idvehiculo', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

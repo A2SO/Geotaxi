@@ -13,7 +13,7 @@
     <body>
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <h2 style="margin-top:0px">Lista de Vehiculos con Concesionario</h2>
+                <h2 style="margin-top:0px">Lista de Vehiculos Inactivos</h2>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 4px"  id="message">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col-md-4 text-right">
-                <?php echo anchor(site_url('vehiculos/create'), 'Crear', 'class="btn btn-primary"'); ?>
+       
 		<?php echo anchor(site_url('vehiculos/excel'), 'Excel', 'class="btn btn-primary"'); ?>
 		<?php echo anchor(site_url('vehiculos/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div>
@@ -33,9 +33,7 @@
 		    <th>Placa</th>
 		    <th>Niv</th>
 		    <th>Numeroeconomico</th>		    
-		    <th>Tarjeta Circulacion</th>	
-            <th>Concesionario</th> 	  
-            <th>Conductor</th> 
+		    <th>Tarjeta Circulacion</th>		    
 		    <th>Estatus</th>
 		    <th>Action</th>
                 </tr>
@@ -52,17 +50,16 @@
 		    <td><?php echo $vehiculos->niv ?></td>
 		    <td><?php echo $vehiculos->numeroeconomico ?></td>
 		    <td><?php echo $vehiculos->tarjetacirculacion ?></td>
-             <td><?php echo $vehiculos->idconcesinario ." ".$vehiculos->nombre." ".$vehiculos->ape_pat." ".$vehiculos->ape_mat ?></td>
-            <td><?php echo $vehiculos->idconductor ?></td>
 		    <td><?php echo $vehiculos->descripcion ?></td>
 		    <td style="text-align:center" width="200px">
 			<?php 
-			echo anchor(site_url('vehiculos/read_asignado_concesionario/'.$vehiculos->idvehiculo ),'Detalles'); 
+			echo anchor(site_url('vehiculos/read_inactivo/'.$vehiculos->idvehiculo ),'Detalles'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/update_asignado_concesionario/'.$vehiculos->idvehiculo),'Asignar Conductor'); 
+			echo anchor(site_url('vehiculos/reactivar/'.$vehiculos->idvehiculo),'Reactivar','onclick="javasciprt: return confirm(\'
+¿Está seguro?, el registro se encuentra el registros en espera\')"'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/desactivar_concesionario_asignado/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
-¿Está seguro?\')"'); 
+			echo anchor(site_url('vehiculos/delete/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
+¿Está seguro?, el registro se eliminara permanentemente de la base de datos\')"'); 
 			?>
 		    </td>
 	        </tr>
