@@ -61,8 +61,7 @@
 			echo ' | '; 
 			echo anchor(site_url('vehiculos/update_informacion_total/'.$vehiculos->idvehiculo),'Modificar'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/desactivar_informacion_completa/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
-¿Está seguro?\')"'); 
+			echo anchor(site_url('vehiculos/desactivar_informacion_completa/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'¿Está seguro?\')"'); 
 			?>
 		    </td>
 	        </tr>

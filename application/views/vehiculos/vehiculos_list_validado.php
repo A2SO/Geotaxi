@@ -59,8 +59,7 @@
 			echo ' | '; 
 			echo anchor(site_url('vehiculos/update_validado/'.$vehiculos->idvehiculo),'Asignar Concesionario'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/desactivar_validado/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
-¿Está seguro?\')"'); 
+			echo anchor(site_url('vehiculos/desactivar_validado/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'¿Está seguro?\')"'); 
 			?>
 		    </td>
 	        </tr>

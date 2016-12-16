@@ -44,7 +44,7 @@
             foreach ($vehiculos_data as $vehiculos)
             {
                 ?>
-                <tr>
+                <tr> 
 		    <td><?php echo ++$start ?></td>
 		    <td><?php echo $vehiculos->placa ?></td>
 		    <td><?php echo $vehiculos->niv ?></td>
@@ -59,8 +59,7 @@
             echo ' | '; 
 			echo anchor(site_url('vehiculos/update/'.$vehiculos->idvehiculo),'Modificar'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/desactivar_espera/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
-¿Está seguro?\')"'); 
+			echo anchor(site_url('vehiculos/desactivar_espera/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'¿Está seguro?\')"'); 
 			?>
 		    </td>
 	        </tr>

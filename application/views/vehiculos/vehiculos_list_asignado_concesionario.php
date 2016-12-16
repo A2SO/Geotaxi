@@ -61,8 +61,8 @@
 			echo ' | '; 
 			echo anchor(site_url('vehiculos/update_asignado_concesionario/'.$vehiculos->idvehiculo),'Asignar Conductor'); 
 			echo ' | '; 
-			echo anchor(site_url('vehiculos/desactivar_concesionario_asignado/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'
-¿Está seguro?\')"'); 
+			echo anchor(site_url('vehiculos/desactivar_concesionario_asignado/'.$vehiculos->idvehiculo),'Eliminar','onclick="javasciprt: return confirm(\'¿Está seguro?\')"'); 
+            
 			?>
 		    </td>
 	        </tr>
