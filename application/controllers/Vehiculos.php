@@ -584,7 +584,7 @@ class Vehiculos extends CI_Controller
 
         if ($row) {
             $this->Vehiculos_model->validar_auto($id);
-            $this->session->set_flashdata('message', 'Vehiculo validado correctamente Exitosamente');
+            $this->session->set_flashdata('message', 'Vehiculo validado correctamente');
             redirect(site_url('vehiculos/espera'));
         } else {
             $this->session->set_flashdata('message', 'Registro no encontrado');

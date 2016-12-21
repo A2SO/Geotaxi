@@ -39,7 +39,7 @@ htmlspecialchars($row->descripcion, ENT_QUOTES);
     function get_concesionario(){
 
     // armamos la consulta
-    $query = $this->db-> query('SELECT idconcesinario,nombre,ape_pat,ape_pat FROM Concesionario WHERE clave="AC"');
+    $query = $this->db-> query('SELECT idconcesinario,nombre,ape_pat,ape_pat FROM concesionario WHERE clave="AC"');
 
     // si hay resultados
     if ($query->num_rows() > 0) {
@@ -55,7 +55,7 @@ htmlspecialchars($row->nombre, ENT_QUOTES);
     function get_conductor(){
 
     // armamos la consulta
-    $query = $this->db-> query('SELECT idconductor,nombre_conductor,ap_conductor,am_conductor FROM Conductor 
+    $query = $this->db-> query('SELECT idconductor,nombre_conductor,ap_conductor,am_conductor FROM conductor 
         WHERE clave="AC" ');
 
     // si hay resultados

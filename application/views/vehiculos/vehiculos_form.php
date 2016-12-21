@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">Vehiculos <?php echo $button ?></h2>
+        <h2 style="margin-top:0px">Vehiculos2 <?php echo $button ?></h2>
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="varchar">Placa <?php echo form_error('placa') ?></label>
