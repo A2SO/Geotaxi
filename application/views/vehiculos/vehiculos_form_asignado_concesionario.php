@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>harviacode.com - codeigniter crud generator</title>
+        <title>Formulario vehiculos</title>
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
         <style>
             body{
@@ -37,7 +37,7 @@
             ?>
                 </select>
         </div>
-        <div class="form-group">
+       <div class="form-group">
         <label for="varchar">Conductor <?php echo form_error('Conductor') ?></label>:
         <select class="form-control" id="idconductor" name="idconductor">
         <option value="0"> Selecciona un conductor</option>
@@ -50,6 +50,8 @@
             ?>
                 </select>
         </div>
+
+        
 	    <div class="form-group">
             <label for="varchar">Marca <?php echo form_error('marca') ?></label>
             <input type="text" class="form-control" name="marca" id="marca" placeholder="Marca" value="<?php echo $marca; ?>" readonly="readonly"/>
@@ -62,25 +64,14 @@
             <label for="varchar">Tarjetacirculacion <?php echo form_error('tarjetacirculacion') ?></label>
             <input type="text" class="form-control" name="tarjetacirculacion" id="tarjetacirculacion" placeholder="Tarjetacirculacion" value="<?php echo $tarjetacirculacion; ?>" readonly="readonly" />
         </div>
-        <div class="form-group">
-        
-                    <label for="varchar">Estatus <?php echo form_error('Estatus') ?></label>:
-                     <select class="form-control" id="clave" name="clave">
-                     
-
-            <?php
-                foreach ($arrProfesiones as $i => $profesion){
-                        echo "<option value=".$i ;
-                        if($clave==$i) echo " selected='selected'";
-                        echo ">".$profesion."</option>";
-                                                             }
-            ?>
-                </select>
+       <div class="form-group">
+            <label for="varchar">clave <?php echo form_error('clave') ?></label>
+            <input type="text" class="form-control" name="clave" id="clave" placeholder="Tarjetacirculacion" value="IC" readonly="readonly"/>
         </div>
 
 	    <input type="hidden" name="idvehiculo" value="<?php echo $idvehiculo; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('vehiculos/espera') ?>" class="btn btn-default">Cancelar</a>
+	    <a href="<?php echo site_url('vehiculos/asignado_concesionario') ?>" class="btn btn-default">Cancelar</a>
 	</form>
     </body>
 </html>

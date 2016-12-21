@@ -8,7 +8,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="<?= base_url()?>Admin"><i class="icon-display4 position-left"></i>Inicio</a></li>
 				<li><a href="<?= base_url()?>Concesionario"><i class="icon-display4 position-left"></i>Concesionario</a></li>
-				<li><a href="<?= base_url()?>Vehiculos"><i class="icon-display4 position-left"></i>Vehiculo</a></li>
+				
 				<li><a href="<?= base_url()?>Conductor"><i class="icon-display4 position-left"></i>Conductor</a></li>
 
 

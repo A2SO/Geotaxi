@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>harviacode.com - codeigniter crud generator</title>
+        <title>Vehículos en Espera</title>
         <!--<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
         <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>"/>
         <style>

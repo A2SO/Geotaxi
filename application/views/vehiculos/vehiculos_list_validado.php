@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>harviacode.com - codeigniter crud generator</title>
+        <title>Vehículos validados</title>
         <!--<link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
         <link rel="stylesheet" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>"/>
         <style>
@@ -13,7 +13,7 @@
     <body>
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <h2 style="margin-top:0px">Lista de Vehiculos Validados</h2>
+                <h2 style="margin-top:0px">Lista de Vehículos validados</h2>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 4px"  id="message">
