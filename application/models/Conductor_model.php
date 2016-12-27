@@ -108,6 +108,11 @@ htmlspecialchars($row->descripcion, ENT_QUOTES);
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+    function desactivar($id)
+    {
+        
+        $this->db->query("UPDATE conductor SET clave='IN' WHERE idconductor=".$id);
+    }
 
 }
 

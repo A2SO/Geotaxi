@@ -176,7 +176,7 @@ class Conductor extends CI_Controller
         $row = $this->Conductor_model->get_by_id($id);
 
         if ($row) {
-            $this->Conductor_model->delete($id);
+            $this->Conductor_model->desactivar($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('conductor'));
         } else {

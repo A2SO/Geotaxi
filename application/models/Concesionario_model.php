@@ -103,6 +103,7 @@ htmlspecialchars($row->descripcion, ENT_QUOTES);
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
+     
 
 }
 

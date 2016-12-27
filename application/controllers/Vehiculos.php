@@ -405,6 +405,32 @@ class Vehiculos extends CI_Controller
             redirect(site_url('vehiculos/informacion_completa'));
         }
     }
+    public function update_inactivo($id) 
+    {   
+        
+        $row = $this->Vehiculos_model->get_by_id($id);            
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('vehiculos/update_action_inactivo'),
+        'idvehiculo' => set_value('idvehiculo', $row->idvehiculo),
+        'placa' => set_value('placa', $row->placa),
+        'niv' => set_value('niv', $row->niv),
+        'numeroeconomico' => set_value('numeroeconomico', $row->numeroeconomico),    
+        'marca' => set_value('marca', $row->marca),
+        'modelo' => set_value('modelo', $row->modelo),
+        'tarjetacirculacion' => set_value('tarjetacirculacion', $row->tarjetacirculacion),
+        'clave' => set_value('clave', $row->clave),
+        'arrProfesiones' => $this->Vehiculos_model->get_clave(),
+        'descripcion' => set_value('descripcion', $row->descripcion),
+        );
+            $this->load->view('vehiculos/vehiculos_form_eliminado', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Registro no encontrado');
+            redirect(site_url('vehiculos/inactivo'));
+        }
+    }
     
     public function update_action() 
     {
@@ -498,6 +524,30 @@ class Vehiculos extends CI_Controller
             $this->Vehiculos_model->update($this->input->post('idvehiculo', TRUE), $data);
             $this->session->set_flashdata('message', 'Registro actualizado con Éxito');
             redirect(site_url('vehiculos/informacion_completa'));
+        }
+    }
+public function update_action_inactivo() 
+    {
+        $this->_rules_inactivo();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idvehiculo', TRUE));
+        } else {
+            $data = array(
+        'placa' => $this->input->post('placa',TRUE),
+        'niv' => $this->input->post('niv',TRUE),
+        'numeroeconomico' => $this->input->post('numeroeconomico',TRUE),
+        'idconcesinario' => $this->input->post('idconcesinario',TRUE),
+        'idconductor' => $this->input->post('idconductor',TRUE),
+        'marca' => $this->input->post('marca',TRUE),
+        'modelo' => $this->input->post('modelo',TRUE),
+        'tarjetacirculacion' => $this->input->post('tarjetacirculacion',TRUE),
+        'clave' => $this->input->post('clave',TRUE),
+        );
+
+            $this->Vehiculos_model->update($this->input->post('idvehiculo', TRUE), $data);
+            $this->session->set_flashdata('message', 'Registro actualizado con Éxito');
+            redirect(site_url('vehiculos/inactivo'));
         }
     }
     public function delete($id) 
@@ -618,6 +668,20 @@ class Vehiculos extends CI_Controller
     $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
      public function _rules_asignado_concesionario() 
+    {
+    $this->form_validation->set_rules('placa', 'placa', 'trim|required');
+    $this->form_validation->set_rules('niv', 'niv', 'trim|required');
+    $this->form_validation->set_rules('numeroeconomico', 'numeroeconomico', 'trim|required');
+    $this->form_validation->set_rules('idconcesinario', 'idconcesinario', 'trim|required');
+    $this->form_validation->set_rules('idconductor', 'idconductor', 'trim|required');
+    $this->form_validation->set_rules('marca', 'marca', 'trim|required');
+    $this->form_validation->set_rules('modelo', 'modelo', 'trim|required');
+    $this->form_validation->set_rules('tarjetacirculacion', 'tarjetacirculacion', 'trim|required');
+    $this->form_validation->set_rules('idvehiculo', 'idvehiculo', 'trim');   
+    $this->form_validation->set_rules('clave', 'clave', 'trim|required');   
+    $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+    public function _rules_inactivo() 
     {
     $this->form_validation->set_rules('placa', 'placa', 'trim|required');
     $this->form_validation->set_rules('niv', 'niv', 'trim|required');

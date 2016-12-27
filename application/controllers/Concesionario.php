@@ -160,7 +160,7 @@ class Concesionario extends CI_Controller
 
         if ($row) {
             $this->Concesionario_model->delete($id);
-            $this->session->set_flashdata('message', 'Delete Record Success');
+            $this->session->set_flashdata('message', 'Registro eliminado correctamente');
             redirect(site_url('concesionario'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
